@@ -25,11 +25,11 @@ COPY conf/ /anope/conf/
 
 FROM alpine:latest
 
-MAINTAINER Jeremy T. Bouse <Jeremy.Bouse@UnderGrid.net>
+LABEL maintainer="Jeremy.Bouse@UnderGrid.net"
 
 RUN adduser -D anope -s /bin/false anope && \
     apk upgrade --no-cache && \
-    apk add --no-cache tini curl libgcc libstdc++ gnutls gnutls-utils sqlite-libs mariadb-connector-c $RUN_DEPENDENCIES
+    apk add --no-cache tini curl libgcc libstdc++ gnutls-utils sqlite-libs mariadb-connector-c $RUN_DEPENDENCIES
 
 COPY --from=builder --chown=1000 /anope /anope
 
